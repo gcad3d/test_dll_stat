@@ -1,0 +1,38 @@
+# MSVC-only: build dll1.dll/dll1.dll1:
+# nmake -f dll1.nmak
+# using main.lib
+
+
+SRC = dll1.c
+
+
+#-----------------------------------------------------
+# get <fn>.o from <fn>.c for sourceList
+OBJ = $(SRC:.c=.obj)
+
+CPDEB = -DDEB /Zi
+LKDEB = /DEBUG
+
+CPFLG = /nologo $(CPDEB)
+
+
+#-----------------------------------------------------
+LKFLG =\
+ /nologo\
+ /nodefaultlib\
+ /MACHINE:X86
+
+
+#-----------------------------------------------------
+build: $(OBJ)
+	@echo ================= build $@ ========================
+	@echo "OBJ=" $(OBJ)
+	LIB/OUT:dll1.lib $(OBJ) $(LIB_BAS) $(LKFLG)
+
+
+#-----------------------------------------------------
+.c.obj:
+	@echo ================= Compile $@ ========================
+	$(CC) -c $(CPFLG) $<
+
+# eof

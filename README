@@ -1,0 +1,51 @@
+README ../test_dll_stat/
+
+Testprogram for a static DLL / shared-overlay
+- loading is done automatic;
+- main can use functions/variables of dll;
+- dll can access functions/variables of main
+- operating-systems: Linux, Microsoft-Msys2, Microsoft-MS-VC
+- Microsoft-Msys2 and Microsoft-MS-VC is using a lib;
+  - dll can use dll, dll cannot use functions/variables of main.
+
+
+.........................................
+Using Linux:
+make -f main.mak clean - clean after changing OS
+make -f dll1.mak       - makes dll1.dll
+make -f main.mak       - makes main
+./main                 - start main (key r to start, q to stop).
+
+
+.........................................
+Using Microsoft-Msys2:
+make -f main.mak clean - clean after changing OS
+make -f dll1.mak       - makes dll1.dll
+make -f main.mak       - makes main
+./main.exe             - start main (key r to start, q to stop).
+
+
+.........................................
+Using Microsoft-VC:
+nmake -f main.nmak clean - clean after changing OS
+- create file main.def
+nmake -f dll1.nmak       - makes dll1.dll
+nmake -f main.nmak       - makes main.exe and main.lib
+main.exe                 - start main
+
+
+.........................................
+Files
+main.mak            build main.exe
+main                executable Linux
+main.exe            executable Msys2 or Microsoft-VC
+main.c              main
+
+dll1.mak            build dll
+libdll1.dll         dll for Linux
+libdll1.a           lib for Msys2 or Microsoft-VC
+dll1.c              source dll1
+
+
+
+# EOF
